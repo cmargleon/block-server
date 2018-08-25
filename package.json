@@ -1,0 +1,19 @@
+{
+  "name": "block-server",
+  "version": "1.0.0",
+  "description": "Nodejs server for hyperledger composer in Verified project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "claudio",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.9",
+    "morgan": "^1.9.0",
+    "save": "^2.3.2"
+  }
+}
