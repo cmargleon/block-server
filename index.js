@@ -9,7 +9,11 @@ var mongoose = require('mongoose');
 var usersRoute = require('./routes/user');
 
 var app = express();
-mongoose.connect('localhost:27017/myCollection');
+const URI = 'mongodb://localhost/mean-crud';
+
+mongoose.connect(URI)
+    .then(db => console.log('db is connected'))
+    .catch(err => console.error(err));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
