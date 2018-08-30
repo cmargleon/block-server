@@ -9,6 +9,7 @@
   "author": "claudio",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "composer-admin": "^0.20",
     "composer-cli": "^0.20",

@@ -9,11 +9,17 @@ var mongoose = require('mongoose');
 var usersRoute = require('./routes/user');
 
 var app = express();
-const URI = 'mongodb://localhost/mean-crud';
+const URI = 'mongodb+srv://claudio:'
+    + process.env.MONGO_PW + 
+        '@node-composer-lhxzj.gcp.mongodb.net/test?retryWrites=true';
 
-mongoose.connect(URI)
+mongoose.connect(URI, {
+    dbName: "testing"
+})
     .then(db => console.log('db is connected'))
     .catch(err => console.error(err));
+
+mongoose.Promise = global.Promise;
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
