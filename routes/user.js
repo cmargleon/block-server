@@ -55,9 +55,9 @@ router.post('/signup', async (req, res, next) => {
 });
 
 router.delete('/userid', (req, res, next) => {
-    User.remove({ _id : req.params.id})
+    User.remove({ _id : req.params.userId})
     .exec()
-    .then(res => {
+    .then(result=> {
         return res.status(200).json({
             message: "Usuario eliminado"
         })
