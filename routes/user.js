@@ -16,12 +16,12 @@ router.get('/', function (req, res, next) {
     */
 });
 
-router.post('/signup', async function(req, res, next) {
+router.post('/signup', async (req, res, next) => {
     User.find({ email: req.body.email })
         .exec()
         .then(user => {
-            if(user) {
-                return res.status(409).json({
+            if(user.lenght >= 1) {
+                return res.status(422).json({
                     message: "Este e-mail ya se encuentra registrado"
                 });
             } else {
@@ -40,7 +40,7 @@ router.post('/signup', async function(req, res, next) {
                             .save()
                             .then(result => {
                                 res.status(201).json({
-                                    message: "User Created"
+                                    message: "Usuario creado"
                                 });
                             })
                             .catch(err => {
@@ -53,5 +53,20 @@ router.post('/signup', async function(req, res, next) {
             }
         })
 });
+
+router.delete('/userid', (req, res, next) => {
+    User.remove({ _id : req.params.id})
+    .exec()
+    .then(res => {
+        return res.status(200).json({
+            message: "Usuario eliminado"
+        })
+    })
+    .catch(err => {
+        res.status(500).json({
+            error: err
+        });
+    });
+})
 
 module.exports = router;
