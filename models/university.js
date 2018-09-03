@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
+const universitySchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     email: 
            { type: String,
@@ -18,20 +18,20 @@ const userSchema = mongoose.Schema({
               required: true,
               unique: true,
             },
-    graduateRut:
+    universityRut:
             { type: String,
               required: true,
               unique: true,
               match: /^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$/
             },
-    firstName:
+    shortName:
             { type: String,
               required: true,
             },
-    lastName:
+    fullName:
             { type: String,
               required: true
             }
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('University', universitySchema);

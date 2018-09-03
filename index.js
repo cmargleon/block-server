@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var usersRoute = require('./routes/user');
-
+var universitiesRoute = require('./routes/university');
 var app = express();
 const URI = 'mongodb+srv://claudio:'
     + process.env.MONGO_PW + 
@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/user', usersRoute);
-
+app.use('/university', universitiesRoute);
 // catch 404 and forward to error handler
 /*
 app.use(function (req, res, next) {

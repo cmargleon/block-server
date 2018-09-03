@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var User = require('../models/user');
+var University = require('../models/university');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var checkAuth = require('../middleware/check-auth');
@@ -20,11 +20,11 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/signup', (req, res, next) => {
-    User.find({ email: req.body.email })
+    University.find({ email: req.body.email })
         .exec()
-        .then(user => {
-            console.log(user.length)
-            if(user.length >= 1) {
+        .then(university => {
+            console.log(university.length)
+            if(university.length >= 1) {
                 console.log("registrado")
                 return res.status(422).json({
                     message: "Este e-mail ya se encuentra registrado"
@@ -37,16 +37,16 @@ router.post('/signup', (req, res, next) => {
                             error: err
                         });
                     } else {
-                        const user = new User({
+                        const university = new University({
                             _id: new mongoose.Types.ObjectId(),
                             email: req.body.email,
                             password: hash,
-                            firstName: req.body.firstName,
-                            lastName: req.body.lastName,
+                            shortName: req.body.shortName,
+                            fullName: req.body.fullName,
                             cardId: uuidv1(),
-                            graduateRut: req.body.graduateRut
+                            universityRut: req.body.universityRut
                             });
-                            user
+                            university
                             .save()
                             .then(result => {
                                 res.status(201).json({
@@ -65,15 +65,15 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-    User.find({email: req.body.email})
+    University.find({email: req.body.email})
     .exec()
-    .then(user => {
-        if (user.length < 1) {
+    .then(university => {
+        if (university.length < 1) {
             return res.status(401).json({
                 message: "La autentificación falló"
             });
         }
-        bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+        bcrypt.compare(req.body.password, university[0].password, (err, result) => {
             if (err) {
                 return res.status(401).json({
                     message: 'La autentificación falló'
@@ -81,8 +81,8 @@ router.post('/login', (req, res, next) => {
             }
             if (result) {
                 let token = jwt.sign({
-                    email: user[0].email,
-                    userId: user[0]._id
+                    email: university[0].email,
+                    universityId: university[0]._id
                 }, process.env.JWT_KEY,
                 {
                     expiresIn: "12h"
@@ -99,8 +99,8 @@ router.post('/login', (req, res, next) => {
     .catch()
 })
 
-router.delete('/userid', (req, res, next) => {
-    User.remove({ _id : req.params.userId})
+router.delete('/universityid', (req, res, next) => {
+    University.remove({ _id : req.params.universityId})
     .exec()
     .then(result=> {
         return res.status(200).json({

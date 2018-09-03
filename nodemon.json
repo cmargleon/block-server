@@ -1,5 +1,6 @@
 {
     "env": {
-        "MONGO_PW": "Lestat1988!"
+        "MONGO_PW": "Lestat1988!",
+        "JWT_KEY": "Lestat1988!Lestat1988!Lestat1988!Lestat1988!"
     }
 }
