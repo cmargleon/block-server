@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var rutVerifier = require('rut-verifier');
 
 const universitySchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
@@ -22,7 +23,13 @@ const universitySchema = mongoose.Schema({
             { type: String,
               required: true,
               unique: true,
-              match: /^0*(\d{1,3}(\.?\d{3})*)\-?([\dkK])$/
+              validate: {
+                validator: function(v) {
+                  console.log(v)
+                  return rutVerifier.verify(v);
+                },
+                message: props => `${props.value} no es un RUT válido`
+              }
             },
     shortName:
             { type: String,
