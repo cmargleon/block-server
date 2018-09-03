@@ -1,13 +1,13 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+const express = require('express');
+const path = require('path');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
-var usersRoute = require('./routes/user');
-var universitiesRoute = require('./routes/university');
-var app = express();
+const usersRoute = require('./routes/user');
+const universitiesRoute = require('./routes/university');
+const app = express();
 const URI = 'mongodb+srv://claudio:'
     + process.env.MONGO_PW + 
         '@node-composer-lhxzj.gcp.mongodb.net/test?retryWrites=true';
