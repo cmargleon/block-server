@@ -6,6 +6,12 @@ router.get('/', function (req, res, next) {
     res.send("ok")
 });
 
+router.post('/', function (req, res, next) {
+    return res.status(200).json({
+        message: "ok"
+    })
+})
+
 router.post('/signup', userController.user_signup);
 
 router.post('/login', userController.user_login);
