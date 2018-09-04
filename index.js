@@ -9,7 +9,7 @@ const usersRoute = require('./routes/user');
 const universitiesRoute = require('./routes/university');
 const app = express();
 const URI = 'mongodb+srv://claudio:'
-    + 'Lestat1988!' + 
+    + process.env.MONGO_PW + 
         '@node-composer-lhxzj.gcp.mongodb.net/test?retryWrites=true';
 
 mongoose.connect(URI, {
