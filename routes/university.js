@@ -11,11 +11,16 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
     userComposer(req.body.cardId, req.body.universityRut, req.body.shortName, req.body.fullName, req.body.email)
     .then(result => {
-        res.status(200).json({
+        return res.status(200).json({
             message: "Usuario creado en la Blockchain"
         });
     })
-    .catch()
+    .catch(err => {
+        return res.status(500).json({
+            message: "Algo fue mal",
+            error: err
+        })
+    })
 });
 
 router.post('/signup', universityController.university_signup);
