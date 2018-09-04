@@ -3,8 +3,15 @@ const uuidv1 = require('uuid/v1');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const log4js = require('log4js');
+
+log4js.configure({
+  appenders: { cheese: { type: 'file', filename: 'cheese.log' } },
+  categories: { default: { appenders: ['cheese'], level: 'error' } }
+});
 
 exports.user_signup = (req, res, next) => {
+    logger.info('Cheese is Comté.');
     User.find({ email: req.body.email })
         .exec()
         .then(user => {
