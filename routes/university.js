@@ -9,9 +9,6 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    res.status(200).json({
-        message:"ok"
-    })
     userComposer(req.body.cardId, req.body.universityRut, req.body.shortName, req.body.fullName, req.body.email)
     .then(result => {
         return res.status(200).json({
