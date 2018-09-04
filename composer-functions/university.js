@@ -1,4 +1,5 @@
 const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
+const AdminConnection = require('composer-admin').AdminConnection;
 
 //variables
 const namespace = 'org.degree.ucsd';
