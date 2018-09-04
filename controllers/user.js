@@ -46,7 +46,12 @@ exports.user_signup = (req, res, next) => {
                     }
                 });
             }
-        });
+        })
+        .catch(err => {
+            return res.status(200).json({
+                error: err
+            })
+        })
 }
 
 exports.user_login = (req, res, next) => {
